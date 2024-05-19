@@ -1,13 +1,23 @@
+import { useState } from "react";
 import Button from "./Button";
 import AddTodo from "./Components/AddTodo";
 import AppName from "./Components/AppName";
+import ButtonsContainer from "./Components/ButtonsContainer";
+import Display from "./Components/Display";
 import Map from "./Components/Map";
 import TodoItem1 from "./Components/TodoItem1";
 import TodoItem2 from "./Components/TodoItem2";
 import Hello from "./Hello";
 
 function App() {
-  let HealthyFood = ['Sabzi', 'Mutton', 'Fish', 'Milk', 'Fruits'];
+  const [HealthyFood, setHealthyFood] = useState(['Sabzi', 'Mutton', 'Fish', 'Milk', 'Fruits']);
+  const OnKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      let newItem = e.target.value;
+      e.target.value = '';
+      setHealthyFood([...HealthyFood, newItem]);
+    }
+  }
   const todoItems = [
     {
       id: 1,
@@ -39,13 +49,23 @@ function App() {
     <div>
       <AppName />
       <div className='container w-50 border'>
-        <AddTodo />
+        
         <div className="text-align-left">
-          <TodoItem1 todoItems={todoItems} />
+          <TodoItem1 todoItems={todoItems}
+          handleClick= {() => console.log('button is clicked.') }
+          />
           {/* <TodoItem2 /> */}
         </div>
       </div>
-   <Map items={HealthyFood} />
+      <div className='container w-50 border'>
+      <AddTodo handleOnKeyDown={OnKeyDown} />
+      <Map items={HealthyFood} />
+      </div>
+
+      <div className="container w-25 border border-info b-light mt-3 rounded-2">
+        <Display />
+        <ButtonsContainer />
+      </div>
     </div>
   );
 }

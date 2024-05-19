@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TodoItem1({ todoItems }) {
+function TodoItem1({ todoItems, handleClick }) {
     return (
         <div className='container mt-2'>
             {todoItems.map((item) => (
@@ -12,7 +12,7 @@ function TodoItem1({ todoItems }) {
                         {item.date}
                     </div>
                     <div className="col-3">
-                        <button type="button" className="btn btn-danger w-100">Delete</button>
+                        <button type="button" onClick={handleClick} className="btn btn-danger w-100">Delete</button>
                     </div>
                 </div>
             ))}
