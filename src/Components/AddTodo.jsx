@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function AddTodo() {
+function AddTodo({handleOnKeyDown}) {
+
     return (
         <div className='container mt-3'>
             <div className="row mb-1 p-2 border rounded bg-light">
                 <div className="col-md-5">
-                    <input className='form-control' type="text" placeholder="Enter Your Todo Here" />
+                    <input className='form-control' onKeyDown={handleOnKeyDown} type="text" placeholder="Enter Your Todo Here" />
                 </div>
+                {/* <p>{word}</p> */}
                 <div className="col-md-4">
                     <input className='form-control' type="date" />
                 </div>
